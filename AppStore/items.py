@@ -8,19 +8,22 @@
 import scrapy
 
 
-class AppstoreItem(scrapy.Item):
+class AppStoreItem(scrapy.Item):
    
 
 
-    Names = scrapy.Field()
-    Provider  = scrapy.Field()
-    Size = scrapy.Field()
-    Category = scrapy.Field()
-    Compatibility= scrapy.Field()
-    Languages = scrapy.Field()  
-    Age_Rating = scrapy.Field()
-    Price = scrapy.Field()
-    App_Rating = scrapy.Field()    
+    name = scrapy.Field()
+    # seller  = scrapy.Field()
+    size = scrapy.Field()
+    category = scrapy.Field()
+    compatibility= scrapy.Field()
+    languages = scrapy.Field()  
+    age_rating = scrapy.Field()
+    price = scrapy.Field()
+    app_rating = scrapy.Field()    
+    rating_count = scrapy.Field()
+    rank = scrapy.Field()  
+    rating_count = scrapy.Field()
 
 
 
