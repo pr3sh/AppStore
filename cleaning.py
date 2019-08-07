@@ -40,10 +40,12 @@ def clean(in_df):
 	df['age_rating'] = df['age_rating'].apply(lambda x: re.search("\d+",x)[0])
 
 	df['app_rating'] = df['app_rating'].replace(np.nan,0)
+	
 	df['size'] = df['size'].apply(lambda x: re.match("\d+(\.)?\d*",x)[0])
 	df['size'].astype(float) #convert the app size column from string to float object
 
 	df.assign(free_boolean =df['price']=='Free',inplace=True)  #Free or not
+	
 	df['rating_count']=df['rating_count'][:].str.split(' ',n=1,expand = True)
 	df['rating_count'].fillna("0",inplace=True)
 
@@ -51,6 +53,12 @@ def clean(in_df):
 	df['rating_count']=df['rating_count'].astype(float)
 
 	df['free_or_not']=df['price']!='Free' #boolean column for free or not
+	
+	df['price']=df.price.astype(str) #making sure the price column is filled with just prices only
+	df['price']=df.price.str.split('$',expand = True)[0]
+	df['price'].fillna(value=0, inplace=True)
+	df['price']= df['price'].apply(float)
+
 
 
 
