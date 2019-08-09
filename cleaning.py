@@ -35,7 +35,7 @@ def clean(in_df):
 	
 	df['num_languages'] = df['languages'].apply(countLangs) #created new column that had the number of languages the app offered
 	
-	df['boolean_rank'] = df['rank'].notna() #create a new column of booleans indicating whether an app was raned or unranked
+	df['boolean_rank'] = df['rank'].notna() #created a new column of booleans indicating whether an app was raned or unranked
 	
 	df['age_rating'] = df['age_rating'].apply(lambda x: re.search("\d+",x)[0])
 
@@ -58,6 +58,9 @@ def clean(in_df):
 	df['price']=df.price.str.split('$',expand = True)[0]
 	df['price'].fillna(value=0, inplace=True)
 	df['price']= df['price'].apply(float)
+
+	df['languages']=df['languages'].astype(str)  #replacing apps that have sum null values with enlgish as default
+	df['languages'].apply(lambda x:x.replace('nan', "English"))
 
 
 
